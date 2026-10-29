@@ -4,6 +4,8 @@
 # rotações: 0 = inicial, 1 = 90º, 2 = 180º, 3 = 270º.
 # original_shape é a forma original da peça, ela tem a função abstrata.
 # _box.size a sua lógica representa pegar o maior valor do bloco e fora do bloco pegar o maior valor dos 4 blocos.
+# _rotate.shape é staticmethod, pois não precisa usar o self, pois ele só precisa do shape e o box_size para transformar uma nova forma de rotação.
+# Além disso a lógica dele é definir as formas de 90º no sentido horário, assim transformando cada bloco em (box_size - 1 - y, x).
 
 
 
@@ -32,6 +34,13 @@ class Tetrimino(ABC):
     @abstractmethod
     def _original_shape(self) -> TetriminoShape:
         pass
+
+    @staticmethod
+    def _rotate_shape(shape, box_size) -> TetriminoShape:
+        return tuple(
+            Block(box_size - 1 - block.y, block.x)
+            for block in shape
+        )
 
 
 
