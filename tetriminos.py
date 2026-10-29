@@ -8,7 +8,7 @@
 # Além disso a lógica dele é definir as formas de 90º no sentido horário, assim transformando cada bloco em (box_size - 1 - y, x).
 # Os shapes são as rotações das formmas, na qual giram 90º graus.
 # Os Left e Right são funções de movimento para a esquerda e direita, a porcentagem 4 faz esse ciclo. (Lembrando que é só 0, 1, 2, 3 de movimento).
-
+# A função color é abstrata, pois vai ser usada nas cores dos tetriminos
 
 
 
@@ -74,6 +74,11 @@ class Tetrimino(ABC):
 
     def left_rotate(self):
         self._rotation = (self._rotation - 1) % 4
+
+    @property
+    @abstractmethod
+    def color(self) -> str:
+        pass
 
 
 
