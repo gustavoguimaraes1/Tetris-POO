@@ -20,4 +20,11 @@ class Tetrimino(ABC):
 
         self._rotation = initial_rotation
 
+        original_shape = self._original_shape()
+
+    @abstractmethod
+    def _original_shape(self) -> TetriminoShape:
+        pass
+
+
 
