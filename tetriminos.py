@@ -6,6 +6,7 @@
 # _box.size a sua lógica representa pegar o maior valor do bloco e fora do bloco pegar o maior valor dos 4 blocos.
 # _rotate.shape é staticmethod, pois não precisa usar o self, pois ele só precisa do shape e o box_size para transformar uma nova forma de rotação.
 # Além disso a lógica dele é definir as formas de 90º no sentido horário, assim transformando cada bloco em (box_size - 1 - y, x).
+# Os shapes são as rotações das formmas.
 
 
 
@@ -31,6 +32,18 @@ class Tetrimino(ABC):
             for block in original_shape
         )
 
+        shape0 = original_shape
+        shape1 = self._rotate_shape(shape0, self._box.size)
+        shape2 = self._rotate_shape(shape1, self._box.size)
+        shape3 = self._rotate_shape(shape2, self._box.size)
+
+        self._shapes = (
+            shape0,
+            shape1,
+            shape2,
+            shape3
+        )
+
     @abstractmethod
     def _original_shape(self) -> TetriminoShape:
         pass
@@ -41,6 +54,8 @@ class Tetrimino(ABC):
             Block(box_size - 1 - block.y, block.x)
             for block in shape
         )
+
+    
 
 
 
