@@ -103,5 +103,19 @@ class Tetrimino(ABC):
         return "\n".join(linhas)
 
 
+# Classes dos Tetriminos
+# TretiminoI
 
+class TetriminoI(Tetrimino):
 
+    def _original_shape(self):
+        return (
+            Block(0, 1),
+            Block(1, 1),
+            Block(2, 1),
+            Block(3, 1)
+        )
+    @property
+    def color(self):
+        return "#00f0f0"
+    
