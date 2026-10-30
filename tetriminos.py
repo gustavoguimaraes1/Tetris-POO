@@ -8,7 +8,8 @@
 # Além disso a lógica dele é definir as formas de 90º no sentido horário, assim transformando cada bloco em (box_size - 1 - y, x).
 # Os shapes são as rotações das formmas, na qual giram 90º graus.
 # Os Left e Right são funções de movimento para a esquerda e direita, a porcentagem 4 faz esse ciclo. (Lembrando que é só 0, 1, 2, 3 de movimento).
-# A função color é abstrata, pois vai ser usada nas cores dos tetriminos
+# A função color é abstrata, pois vai ser usada nas cores dos tetriminos.
+# O __str__ é usado para desenhar a peça em texto, assim ocupando a caixa inteira.
 
 
 
@@ -79,6 +80,28 @@ class Tetrimino(ABC):
     @abstractmethod
     def color(self) -> str:
         pass
+
+    def __str__(self) -> str:
+        linhas = []
+
+        for y in range(self._box_size):
+            linha = ""
+
+            for x in range(self._box_size):
+                ocupado = any(
+                    block.x == x and block.y == y
+                    for block in self.shape
+                )
+
+                if ocupado:
+                    linha += "⬜"
+                else:
+                    linha += "⬛"
+
+            linhas.append(linha)
+
+        return "\n".join(linhas)
+
 
 
 
