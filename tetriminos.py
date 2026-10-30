@@ -105,10 +105,16 @@ class Tetrimino(ABC):
 
 # Classes dos Tetriminos
 # TretiminoI
+# TetriminoJ
+# TetriminoL
+# TetriminoO
+# TetriminoS
+# TetriminoT
+# TetriminoZ
 
 class TetriminoI(Tetrimino):
 
-    def _original_shape(self):
+    def _original_shape(self) -> TetriminoShape:
         return (
             Block(0, 1),
             Block(1, 1),
@@ -116,6 +122,83 @@ class TetriminoI(Tetrimino):
             Block(3, 1)
         )
     @property
-    def color(self):
+    def color(self) -> str:
         return "#00f0f0"
-    
+
+class TetriminoJ(Tetrimino):
+
+    def _original_shape(self) -> TetriminoShape:
+        return (
+            Block(0, 0),
+            Block(0, 1),
+            Block(1, 1),
+            Block(2, 1)
+        )
+    @property
+    def color(self) -> str:
+        return "#0000f0"
+
+class TetriminoL(Tetrimino):
+
+    def _original_shape(self) -> TetriminoShape:
+        return (
+            Block(2, 0),
+            Block(0, 1),
+            Block(1, 1),
+            Block(2, 1)
+        )
+    @property
+    def color(self) -> str:
+        return "#f0a000"
+
+class TetriminoO(Tetrimino):
+
+    def _original_shape(self) -> TetriminoShape:
+        return (
+            Block(0, 0),
+            Block(1, 0),
+            Block(0, 1),
+            Block(1, 1)
+        )
+    @property
+    def color(self) -> str:
+        return "#f0f000"
+
+class TetriminoS(Tetrimino):
+
+    def _original_shape(self) -> TetriminoShape:
+        return (
+            Block(1, 0),
+            Block(2, 0),
+            Block(0, 1),
+            Block(1, 1)
+        )
+    @property
+    def color(self) -> str:
+        return "#00f000"
+
+class TetriminoT(Tetrimino):
+
+    def _original_shape(self) -> TetriminoShape:
+        return (
+            Block(1, 0),
+            Block(0, 1),
+            Block(1, 1),
+            Block(2, 1)
+        )
+    @property
+    def color(self) -> str:
+        return "#a000f0"
+
+class TetriminoZ(Tetrimino):
+
+    def _original_shape(self) -> TetriminoShape:
+        return (
+            Block(0, 0),
+            Block(1, 1),
+            Block(1, 1),
+            Block(2, 1),
+        )
+    @property
+    def color(self) -> str:
+        return "#f00000"
