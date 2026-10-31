@@ -12,33 +12,32 @@
 # O __str__ é usado para desenhar a peça em texto, assim ocupando a caixa inteira.
 
 
-
 from abc import ABC, abstractmethod
 from block import Block
 from exceptions import InvalidRotationError
 
-TetriminoShape = [Block, Block, Block, Block]
+TetriminoShape = tuple[Block, Block, Block, Block]
 
 class Tetrimino(ABC):
 
 
     def __init__(self, initial_rotation: int = 0):
-        if initial_rotation < 0 or initial_rotation > 4:
+        if initial_rotation < 0 or initial_rotation >= 4:
             raise InvalidRotationError()
 
         self._rotation = initial_rotation
 
         original_shape = self._original_shape()
 
-        self._box.size = 1 + max(
+        self._box_size = 1 + max(
             max(block.x, block.y)
             for block in original_shape
         )
 
         shape0 = original_shape
-        shape1 = self._rotate_shape(shape0, self._box.size)
-        shape2 = self._rotate_shape(shape1, self._box.size)
-        shape3 = self._rotate_shape(shape2, self._box.size)
+        shape1 = self._rotate_shape(shape0, self._box_size)
+        shape2 = self._rotate_shape(shape1, self._box_size)
+        shape3 = self._rotate_shape(shape2, self._box_size)
 
         self._shapes = (
             shape0,
@@ -64,7 +63,7 @@ class Tetrimino(ABC):
 
     @property
     def box_size(self) -> int:
-        return self.box_size
+        return self._box_size
 
     @property
     def current_rotation(self) -> int:
@@ -195,7 +194,7 @@ class TetriminoZ(Tetrimino):
     def _original_shape(self) -> TetriminoShape:
         return (
             Block(0, 0),
-            Block(1, 1),
+            Block(1, 0),
             Block(1, 1),
             Block(2, 1),
         )
