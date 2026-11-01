@@ -33,23 +33,37 @@ def bordas(game: Tetris):
 
     largura = game.width * 2
 
-    print("╔" + "=" * largura + "╗")
+    linhas_tabuleiro = []
+    linhas_tabuleiro.append("╔" + "=" * largura + "╗")
 
     for linha in colored_board(game).split("\n"):
-        print("║" + linha + "║")
+        linhas_tabuleiro.append("║" + linha + "║")
 
-    print("╚" + "=" * largura + "╝")
+    linhas_tabuleiro.append("╚" + "=" * largura + "╝")
 
-    print(f"Score: {game.score}")
-
-    print()
-    print("A - esquerda")
-    print("D - direita")
-    print("S - descer")
-    print("W - girar")
-    print("X - queda")
-    print("Q - sair")
     
+
+    painel = [
+        f"Score: {game.score}",
+        "",
+        "A - esquerda",
+        "D - direita",
+        "S - descer",
+        "W - girar",
+        "X - queda",
+        "Q - sair",
+    ]
+
+    total_linhas = max(len(linhas_tabuleiro), len(painel))
+
+    while len(linhas_tabuleiro) < total_linhas:
+        linhas_tabuleiro.append(" " * (largura + 2))
+
+    while len(painel) < total_linhas:
+        painel.append("")
+
+    for esquerda, direita in zip(linhas_tabuleiro, painel):
+        print(f"{esquerda}   {direita}")
 
 def main() -> None:
     game = Tetris()
