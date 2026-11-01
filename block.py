@@ -19,7 +19,3 @@ class Block:
     @property
     def y(self):
         return self._y
-
-bloco = Block(-1, 2)
-print(bloco.x)
-print(bloco.y)
