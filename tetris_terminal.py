@@ -40,6 +40,8 @@ def bordas(game: Tetris):
 
     print("╚" + "=" * largura + "╝")
 
+    print(f"Score: {game.score}")
+
     print()
     print("A - esquerda")
     print("D - direita")
